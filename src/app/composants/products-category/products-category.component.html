@@ -1,0 +1,25 @@
+<div class="container" *ngIf="filteredProducts.length > 0 else alt">
+
+    <div class="row">
+
+        <div *ngFor="let prod of filteredProducts " class="col-md-4" style="margin-bottom: 20px;">
+
+            <div appHighlight *ngIf="prod.categoryId==categoryId">
+                <img src={{prod.image}} alt={{prod.name}} class="img-fluid h-50 w-75"
+                    (click)="testAlert(prod.description)">
+                <h3>{{prod.name|uppercase}}</h3>
+
+                <p>Marque: {{ prod.brand }}</p>
+                <p>Prix: {{ prod.price }} DT</p>
+                <p *ngIf="prod.promotion > 0">Promotion: -{{ prod.promotion }}%</p>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+<ng-template #alt>
+    <p style="color: red;">aucune produit pour cette category</p>
+</ng-template>

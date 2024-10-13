@@ -1,0 +1,23 @@
+
+<div class="container">
+    <input type="text" name="search" id="search" [(ngModel)]="titre" class="form-control mr-sm-2"  placeholder="Rechercher une catégorie">
+  <div class="row">
+   
+    <div *ngFor="let cat of categories | tablevalue:titre " class="col-md-4" style="margin-bottom: 20px;">
+        <div appHighlight *ngIf="titre === '' || cat.title.toLowerCase().includes(titre.toLowerCase())">
+          <img src={{cat.image}} alt={{cat.title}}
+              class="img-fluid h-50 w-75"
+              (click)="testAlert(cat.description)">
+          <h3>{{cat.title|uppercase}}</h3>
+          <button *ngIf="cat.available else alt " class="btn btn-primary" (click)="productCat(cat.id)">Voir produits</button>
+
+          <button (click)="voirProduits2(cat.id)"  class="btn btn-primary">Voir produits 2</button>
+
+
+          <ng-template #alt><p  style="color: red;">Catégorie non disponible</p></ng-template>
+
+      </div>
+
+  </div>
+
+</div>
