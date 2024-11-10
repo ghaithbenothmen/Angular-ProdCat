@@ -9,15 +9,16 @@
               class="img-fluid h-50 w-75"
               (click)="testAlert(cat.description)">
           <h3>{{cat.title|uppercase}}</h3>
-          <button *ngIf="cat.available else alt " class="btn btn-primary" (click)="productCat(cat.id)">Voir produits</button>
-
+          <button *ngIf="cat.available else alt " class="btn btn-primary" (click)="productCat(cat.id,cat.title)"  >Voir produits</button>
+         <!--  <button *ngIf="cat.available else alt " class="btn btn-primary" (click)="productCat(cat.id)" [queryParam] >Voir produits</button> -->
           <button (click)="voirProduits2(cat.id)"  class="btn btn-primary">Voir produits 2</button>
-
-
+          
+          <a [routerLink]="['detailsCategory',cat.id]">more details</a>
+          
           <ng-template #alt><p  style="color: red;">Catégorie non disponible</p></ng-template>
 
       </div>
-
+    
   </div>
-
+  <router-outlet></router-outlet>
 </div>

@@ -42,8 +42,8 @@ constructor(private router:Router ){}
     }
   ]
 
-  productCat(categorieId: number) { //avec pathparam
-    this.router.navigate(['/productsCategory', categorieId]);
+  productCat(categorieId: number,title:string) { //avec pathparam
+    this.router.navigate(['/productsCategory', categorieId],{queryParams:{title:title}});
   }
 
   voirProduits2(categoryId: number) { //avec querparam
@@ -54,4 +54,16 @@ constructor(private router:Router ){}
     alert(x);
   }
 
+   // Property to track the selected category
+   selectedCategoryId: number | null = null;
+
+   // Method to toggle selected category
+   toggleCategoryDetails(categoryId: number) {
+     // If the category is already selected, unselect it
+     if (this.selectedCategoryId === categoryId) {
+       this.selectedCategoryId = null;
+     } else {
+       this.selectedCategoryId = categoryId;
+     }
+   }
 }

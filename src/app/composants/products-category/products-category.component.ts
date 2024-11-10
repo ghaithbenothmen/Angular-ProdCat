@@ -12,7 +12,8 @@ export class ProductsCategoryComponent {
 
   categoryId!: number;
   filteredProducts: Product[] = [];
-
+categoryName!:string;
+  
   listProducts : Product[]=[
     {"id":1, "name":"Refrigérateur LG Inox",  "image":"assets/images/refrigerateur-lg.jpg", "categoryId":1, "description":"",  "price":2800,  "brand":"LG", "promotion":0},
     {"id":2, "name":"Refrigérateur Samsung Blanc","image":"assets/images/refrigerateur_samsung.jpeg","categoryId":1, "description":"", "price":2400,"brand":"Samsung","promotion":0},
@@ -24,9 +25,12 @@ export class ProductsCategoryComponent {
 
 
   ngOnInit(): void {
+    
     this.categoryId = Number(this.route.snapshot.paramMap.get('id'));
    console.log('id: ',this.categoryId);
-    
+    this.categoryName=this.route.snapshot.queryParamMap.get('title')!;
+
+    console.log('name: ',this.categoryName);
    this.filteredProducts = this.listProducts.filter(product => product.categoryId === this.categoryId);
   }
 

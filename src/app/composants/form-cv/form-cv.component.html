@@ -1,0 +1,63 @@
+<form [formGroup]="cvForm" (ngSubmit)="addUser()" class="p-4 border rounded" style="max-width: 600px; margin: auto;">
+    <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" formControlName="name" class="form-control" placeholder="Name" />
+        <div *ngIf="cvForm.get('name')?.invalid && (cvForm.get('name')?.dirty || cvForm.get('name')?.touched)" class="text-danger mt-1">
+            <small *ngIf="cvForm.get('name')?.errors?.['required']">Name is required.</small>
+            <small *ngIf="cvForm.get('name')?.errors?.['minlength']">Name must be at least 3 characters long.</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email" />
+        <div *ngIf="cvForm.get('email')?.invalid && (cvForm.get('email')?.dirty || cvForm.get('email')?.touched)" class="text-danger mt-1">
+            <small *ngIf="cvForm.get('email')?.errors?.['required']">Email is required.</small>
+            <small *ngIf="cvForm.get('email')?.errors?.['email']">Invalid email format.</small>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password" />
+        <div *ngIf="cvForm.get('password')?.invalid && (cvForm.get('password')?.dirty || cvForm.get('password')?.touched)" class="text-danger mt-1">
+            <small *ngIf="cvForm.get('password')?.errors?.['required']">Password is required.</small>
+            <small *ngIf="cvForm.get('password')?.errors?.['minlength']">Password must be at least 8 characters long.</small>
+        </div>
+    </div>
+
+    <div formGroupName="adresse" class="form-row">
+        <div class="form-group col-md-4">
+            <label for="city">City:</label>
+            <input type="text" id="city" formControlName="city" class="form-control" placeholder="City" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="postalCode">Postal Code:</label>
+            <input type="text" id="postalCode" formControlName="postalCode" class="form-control" placeholder="Postal Code" />
+        </div>
+        <div class="form-group col-md-4">
+            <label for="town">Town:</label>
+            <input type="text" id="town" formControlName="town" class="form-control" placeholder="Town" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Skills:</label>
+        <div formArrayName="skills" *ngFor="let skill of skills.controls; let i = index" class="input-group mb-2">
+            <input [formControlName]="i" class="form-control" placeholder="Skill" />
+            <div class="input-group-append">
+                <button type="button" class="btn btn-danger" (click)="removeSkill(i)">-</button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-secondary mt-2" (click)="addSkill()">+ Add Skill</button>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="cvForm.invalid">Save</button>
+</form>
+
+<h3 class="mt-5">User List</h3>
+<ul class="list-group">
+    <li *ngFor="let user of userList" class="list-group-item">
+        <strong>{{ user.name }}</strong> - {{ user.email }} - {{ user.adresse.city }}, {{ user.adresse.town }} - Skills: {{ user.skills.join(', ') }}
+    </li>
+</ul>

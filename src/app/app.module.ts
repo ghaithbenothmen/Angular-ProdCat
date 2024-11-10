@@ -8,12 +8,15 @@ import { FooterComponent } from './composants/footer/footer.component';
 import { HomeComponent } from './composants/home/home.component';
 import { ListCategoriesComponent } from './composants/list-categories/list-categories.component';
 import { ProfileComponent } from './modules/profile/profile/profile.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TablevaluePipe } from './pipes/tablevalue.pipe';
 import { HighlightDirective } from './directives/highlight.directive';
 import { NotFoundPageComponent } from './composants/not-found-page/not-found-page.component';
 import { ProductsCategoryComponent } from './composants/products-category/products-category.component';
 import { ProductsCategoryQPComponent } from './composants/products-category-qp/products-category-qp.component';
+import { DetailsCategoryComponent } from './composants/details-category/details-category.component';
+import { FormProductComponent } from './composants/form-product/form-product.component';
+import { FormCVComponent } from './composants/form-cv/form-cv.component';
 
 
 
@@ -30,12 +33,16 @@ import { ProductsCategoryQPComponent } from './composants/products-category-qp/p
     NotFoundPageComponent,
     ProductsCategoryComponent,
     ProductsCategoryQPComponent,
+    DetailsCategoryComponent,
+    FormProductComponent,
+    FormCVComponent,
       
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
