@@ -1,0 +1,7 @@
+<div appHighlight >
+    <img  (click)="getDescription(description)" [src]="image" [alt]="title" class="img-fluid h-50 w-75">
+    <h3>{{title | uppercase}}</h3>
+    <button *ngIf="available" Class="btn btn-primary" >{{btnText}}</button>
+    <span *ngIf="!available" >Catégorie non disponible</span>
+    <button Class="btn btn-success" (click)="addToShortList()">Add to shortlist</button>
+ </div>
