@@ -20,10 +20,11 @@
           
       </div> -->
     
-      <app-card-component (shortedList)="addToShortList($event)" class="col-md-4" style="margin-bottom: 20px;" 
+      <app-card-component (shortedList)="addToShortList($event)"   class="col-md-4" style="margin-bottom: 20px;" 
       *ngFor="let categorie of categories | tablevalue:titre"
-       [id]="categorie.id" [title]="categorie.title" [image]="categorie.image" 
-        [available]="categorie.available" ></app-card-component>
+       [id]="categorie.id" [title]="categorie.title" [image]="categorie.image"  [category]="categorie" (deleteCategory)="onDeleteCategory($event)"
+       (editCategory)="onEditCategory($event)"
+       [available]="categorie.available" ></app-card-component>
   </div>
   <router-outlet></router-outlet>
 </div>

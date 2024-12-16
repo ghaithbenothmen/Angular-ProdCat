@@ -15,17 +15,27 @@ export class ProductsCategoryComponent {
   filteredProducts: Product[] = [];
   categoryName!:string;
   
-  listProducts : Product[] = this.prodService.getProducts();
+  listProducts !: Product[] ;
 
 
   ngOnInit(): void {
-    
+   
+  
+
     this.categoryId = Number(this.route.snapshot.paramMap.get('id'));
-   console.log('id: ',this.categoryId);
+    console.log('id: ',this.categoryId);
     this.categoryName=this.route.snapshot.queryParamMap.get('title')!;
 
     console.log('name: ',this.categoryName);
-   this.filteredProducts = this.listProducts.filter(product => product.categoryId === this.categoryId);
+   //this.filteredProducts = this.listProducts.filter(product => product.categoryId === this.categoryId);
+
+   this.prodService.getProductsByCategoryId(this.categoryId).subscribe({
+    next: (data) => {
+      this.listProducts = data;
+      console.log('Products fetched successfully', this.listProducts);
+    },
+    error: (err) => console.error('Error fetching products', err),
+  });
   }
 
   testAlert(x:string){

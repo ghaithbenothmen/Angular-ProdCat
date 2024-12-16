@@ -1,8 +1,8 @@
-<div class="container" *ngIf="filteredProducts.length > 0 else alt">
+<div class="container" *ngIf="listProducts.length > 0 else alt">
 
     <div class="row">
 
-        <div *ngFor="let prod of filteredProducts " class="col-md-4" style="margin-bottom: 20px;">
+        <div *ngFor="let prod of listProducts " class="col-md-4" style="margin-bottom: 20px;">
 
             <div appHighlight *ngIf="prod.categoryId==categoryId">
                 <img src={{prod.image}} alt={{prod.name}} class="img-fluid h-50 w-75"

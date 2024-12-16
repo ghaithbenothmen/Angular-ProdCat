@@ -1,15 +1,52 @@
 import { Injectable } from '@angular/core';
 import { Categorie } from '../models/categorie';
+import { ProductsService } from './products.service';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriesService {
 
+  apiUrlCat: string="http://localhost:3000/categories";
 
-  constructor() { }
+constructor(private http:HttpClient,private productService: ProductsService) {
+  
 
-  categories: Categorie[] = [
+ }
+
+ getListCategoriesFromBackend(): Observable<Categorie[]>{
+
+  return this.http.get<Categorie[]>(this.apiUrlCat); 
+}
+
+deleteCategoryFromBackend(category: Categorie): Observable<void> {
+  // Supprimer les produits liés à cette catégorie
+  this.productService.deleteProductsByCategory(category.id).subscribe();
+
+  // Supprimer ensuite la catégorie
+  return this.http.delete<void>(`${this.apiUrlCat}/${category.id}`);
+}
+
+  addCategory(category: Categorie): Observable<Categorie> {
+    return this.http.post<Categorie>(this.apiUrlCat,category);}
+
+    getCategoryById(id: number): Observable<Categorie> {
+      return this.http.get<Categorie>(`${this.apiUrlCat}/${id}`);
+    }
+
+
+    updateCategory(category: Categorie): Observable<Categorie> {
+      return this.http.put<Categorie>(`${this.apiUrlCat}/${category.id}`, category);
+    }
+
+
+
+
+
+
+  /* categories: Categorie[] = [
     {
       "id": 1, "title": "Grand électroménager",
       "image": "assets/images/categorie_electromenager.jpg", "description": "électroménager plus",
@@ -40,6 +77,8 @@ export class CategoriesService {
     }
   ]
 
+  products = this.prodServ.getProducts();
+
   getCategories(): Categorie[] {
     return this.categories;
   }
@@ -54,14 +93,21 @@ export class CategoriesService {
 
   deleteCategory(id: number) {
     this.categories = this.categories.filter(c => c.id !== id);
+    for (let product of this.products) {
+      if (product.categoryId === id) {
+        this.prodServ.deleteProduct(product.id);
+      }
+    }
   }
 
   updateCategory(category: Categorie) {
     const index = this.categories.findIndex(c => c.id === category.id);
     this.categories[index] = category;
   }
+ */
 
-  
+
+
 
 
   

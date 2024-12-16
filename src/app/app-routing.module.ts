@@ -7,6 +7,7 @@ import { ProductsCategoryQPComponent } from './composants/products-category-qp/p
 import { DetailsCategoryComponent } from './composants/details-category/details-category.component';
 import { FormProductComponent } from './composants/form-product/form-product.component';
 import { FormCVComponent } from './composants/form-cv/form-cv.component';
+import { AddCategorieComponent } from './composants/add-categorie/add-categorie.component';
 
 const routes: Routes = [
 
@@ -23,7 +24,9 @@ const routes: Routes = [
   { path: 'products-category-qp', component: ProductsCategoryQPComponent },
   {path:'addproduct',component:FormProductComponent},
   {path:'addcv',component:FormCVComponent},
-  
+
+  {path:'addCat', component:AddCategorieComponent},
+  { path: 'edit-category/:id', component: AddCategorieComponent },
 
   {
   path: 'contact',

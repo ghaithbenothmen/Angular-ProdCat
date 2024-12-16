@@ -19,6 +19,8 @@ import { FormProductComponent } from './composants/form-product/form-product.com
 import { FormCVComponent } from './composants/form-cv/form-cv.component';
 import { CardComponentComponent } from './composants/card-component/card-component.component';
 import { ShortListComponent } from './composants/short-list/short-list.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddCategorieComponent } from './composants/add-categorie/add-categorie.component';
 
 
 
@@ -40,13 +42,14 @@ import { ShortListComponent } from './composants/short-list/short-list.component
     FormCVComponent,
     CardComponentComponent,
     ShortListComponent,
-      
+    AddCategorieComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -2,6 +2,10 @@
     <img  (click)="getDescription(description)" [src]="image" [alt]="title" class="img-fluid h-50 w-75">
     <h3>{{title | uppercase}}</h3>
     <button *ngIf="available" Class="btn btn-primary" >{{btnText}}</button>
+    <button class="btn btn-info" (click)="viewProducts()">Voir Produits</button>
     <span *ngIf="!available" >Catégorie non disponible</span>
     <button Class="btn btn-success" (click)="addToShortList()">Add to shortlist</button>
+    <button Class="btn btn-danger" (click)="removeCategory()">Remove</button>
+    <button (click)="edit()">Modifier</button>
+
  </div>
