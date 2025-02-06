@@ -16,7 +16,7 @@ stage('Unit Test') {
   steps{
 
   script {
-  sh('npm test --browsers ChromeHeadless --watch=false')
+  sh('npm test --browsers=ChromeHeadless --watch=false')
       }
     }
   }
